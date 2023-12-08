@@ -1,14 +1,8 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
+import type { Event } from '@/models/event'
 import EventItem from '@/components/EventItem.vue'
 import VInput from '@/components/VInput.vue'
-
-interface Event {
-  id: number
-  name: string
-  people: string[]
-  color: string
-}
 
 const events: Event[] = reactive([
   { id: 1, name: 'Trip', people: ['Asef', 'Feri'], color: '#432626' },

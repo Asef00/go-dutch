@@ -5,12 +5,7 @@
 </template>
 
 <script setup lang="ts">
-interface Event {
-  id: number
-  name: string
-  people: string[]
-  color: string
-}
+import type { Event } from '@/models/event'
 
 const props = defineProps<{
   event: Event
