@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { reactive, ref } from 'vue'
 import EventItem from '@/components/EventItem.vue'
+import VInput from '@/components/VInput.vue'
 
 interface Event {
   id: number
@@ -8,7 +10,7 @@ interface Event {
   color: string
 }
 
-const events: Event[] = [
+const events: Event[] = reactive([
   { id: 1, name: 'Trip', people: ['Asef', 'Feri'], color: '#432626' },
   {
     id: 2,
@@ -16,7 +18,13 @@ const events: Event[] = [
     people: ['Asef', 'Alan', 'Ali', 'Milad', 'Hanieh', 'Setayesh'],
     color: '#365036'
   }
-]
+])
+
+const newEvent = ref('')
+
+const createNewEvent = () => {
+  events.push({ id: events.length + 1, name: newEvent.value, people: [], color: '#fff' })
+}
 
 const handleEventClick = (eventId: number) => {
   // Handle the event click
@@ -36,5 +44,9 @@ const handleEventClick = (eventId: number) => {
         @eventClick="handleEventClick"
       />
     </ul>
+    <form @submit.prevent="createNewEvent">
+      <VInput v-model="newEvent" label="Create New Events" type="text" placeholder="Event name" />
+      <button type="submit">Create</button>
+    </form>
   </main>
 </template>
