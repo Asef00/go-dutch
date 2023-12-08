@@ -17,7 +17,8 @@ const events: Event[] = reactive([
 const newEvent = ref('')
 
 const createNewEvent = () => {
-  events.push({ id: events.length + 1, name: newEvent.value, people: [], color: '#fff' })
+  events.push({ id: events.length + 1, name: newEvent.value, people: [], color: '#000' })
+  newEvent.value = ''
 }
 
 const handleEventClick = (eventId: number) => {
