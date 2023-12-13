@@ -6,9 +6,15 @@
 
 <script setup lang="ts">
 import { liveQuery } from 'dexie'
-import { useObservable } from '@vueuse/rxjs'
 import { db } from '@/db'
 import type { Friend } from '@/models/friend'
+import { onMounted, ref } from 'vue'
 
-const friends: Friend[] = useObservable(liveQuery(() => db.friends.toArray()))
+const friends = ref<Friend[]>([])
+
+onMounted(() => {
+  liveQuery(() => db.friends.toArray()).subscribe((result: Friend[]) => {
+    friends.value = result
+  })
+})
 </script>
